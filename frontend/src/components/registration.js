@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../style/login.css"; // Import the CSS file
 
 const Registration = () => {
     const [name, setName] = useState("");
@@ -38,23 +39,53 @@ const Registration = () => {
     };
 
     return (
-        <div>
-            <h2>Register</h2>
-            {error && <p style={{ color: "red" }}>{error}</p>}
-            <form onSubmit={handleRegister}>
-                <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} required />
-                <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
-                <select value={role} onChange={(e) => setRole(e.target.value)}>
-                    <option value="admin">Admin</option>
-                    <option value="project_manager">Project Manager</option>
-                    <option value="team_member">Team Member</option>
-                    <option value="client">Client</option>
-                </select>
-                <button type="submit">Register</button>
-            </form>
-            <button onClick={() => navigate("/")}>Back to Login</button>
+        <div className="auth-container">
+            <div className="auth-box">
+                <h2 className="auth-title">Create a New Account</h2>
+                {error && <p className="auth-error">{error}</p>}
+                <form onSubmit={handleRegister}>
+                    <input
+                        type="text"
+                        placeholder="Full Name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                        className="auth-input"
+                    />
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        className="auth-input"
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        className="auth-input"
+                    />
+                    <input
+                        type="password"
+                        placeholder="Confirm Password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        required
+                        className="auth-input"
+                    />
+                    <select value={role} onChange={(e) => setRole(e.target.value)} className="auth-input">
+                        
+                        <option value="project_manager">Project Manager</option>
+                        <option value="team_member">Team Member</option>
+                        <option value="client">Client</option>
+                    </select>
+                    <button type="submit" className="auth-button">Sign Up</button>
+                </form>
+                <button onClick={() => navigate("/")} className="auth-register">Back to Login</button>
+            </div>
         </div>
     );
 };
