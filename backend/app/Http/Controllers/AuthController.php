@@ -5,23 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Laravel\Sanctum\HasApiTokens;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    /**
-     * Register a new user
-     */
+    
     public function register(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'role' => 'required|in:admin,project_manager,team_member,client',
         ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
 
         $user = User::create([
             'name' => $request->name,
@@ -39,17 +41,15 @@ class AuthController extends Controller
         ], 201);
     }
 
-    /**
-     * Login a user
-     */
+    
     public function login(Request $request)
     {
-        $request->validate([
+        $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        if (!Auth::attempt($request->only('email', 'password'))) {
+        if (!Auth::attempt($credentials)) {
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
 
@@ -63,15 +63,15 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Logout a user
-     */
     public function logout(Request $request)
     {
         $request->user()->tokens()->delete();
+        return response()->json(['message' => 'Logged out successfully']);
+    }
 
-        return response()->json([
-            'message' => 'Logged out successfully'
-        ]);
+   
+    public function user(Request $request)
+    {
+        return response()->json($request->user());
     }
 }
