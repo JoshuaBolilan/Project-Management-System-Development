@@ -83,3 +83,10 @@ Frontend (React Setup)
 3. Start the development server:
    sh
    npm start
+
+Contributors
+- Project Manager: [Brosoto, Adiel Mhelo]
+- Frontend Developer: [Cero.John Marvin]
+- Backend Developer: [Bolilan, Joshua]
+- Tester/QA: [Cartagena, Clarisse]
+- Documentation Specialist: [Cabuyao,Donna Mae ]
