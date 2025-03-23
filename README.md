@@ -37,3 +37,49 @@ Deliverables:
 - Database schema
 - Basic UI for login and dashboard
 
+ Installation Guide
+Prerequisites
+Ensure you have the following installed:
+- Node.js & npm (for React frontend)
+- PHP & Composer (for Laravel backend)
+- MySQL (for database management)
+
+Backend (Laravel Setup)
+1. Clone the repository:
+   sh
+   git clone https://github.com/yourusername/project-management-system.git
+   
+2. Navigate to the backend directory:
+   sh
+   cd backend
+   
+3. Install dependencies:
+   sh
+   composer install
+   
+4. Copy environment file and set up database:
+   sh
+   cp .env.example .env
+   php artisan key:generate
+   
+5. Migrate database:
+   sh
+   php artisan migrate
+   
+6. Run the server:
+   sh
+   php artisan serve
+   
+
+Frontend (React Setup)
+1. Navigate to the frontend directory:
+   sh
+   cd frontend
+   
+2. Install dependencies:
+   sh
+   npm install
+   
+3. Start the development server:
+   sh
+   npm start
