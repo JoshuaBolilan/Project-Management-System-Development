@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, #b3c8e8, #8da9d6);
+    background: linear-gradient(135deg, #d0e1ff, #a0c4ff);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
 }
@@ -20,7 +20,7 @@
     background: white;
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(26, 25, 25, 0.2);
+    box-shadow: 0 10px 25px rgba(26, 25, 25, 0.15);
     text-align: center;
     width: 400px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -28,23 +28,23 @@
 
 .auth-box:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(26, 25, 25, 0.3);
+    box-shadow: 0 15px 35px rgba(26, 25, 25, 0.2);
 }
 
 .auth-title {
     font-size: 28px;
-    color: #1877f2;
+    color: #1a73e8;
     font-weight: 700;
     margin-bottom: 25px;
     position: relative;
     display: inline-block;
     text-transform: uppercase;
     letter-spacing: 1px;
-    background: linear-gradient(45deg, #1877f2, #4267B2);
+    background: linear-gradient(45deg, #1a73e8, #3b82f6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-shadow: 2px 2px 4px rgba(24, 119, 242, 0.2);
+    text-shadow: 2px 2px 4px rgba(26, 115, 232, 0.2);
 }
 
 .auth-title::before {
@@ -54,7 +54,7 @@
     height: 3px;
     bottom: -10px;
     left: 0;
-    background: linear-gradient(to right, #1877f2, #4267B2);
+    background: linear-gradient(to right, #1a73e8, #3b82f6);
     transform: scaleX(0);
     transition: transform 0.3s ease;
 }
@@ -66,38 +66,41 @@
 /* Optional: Add a subtle animate effect */
 @keyframes titleGlow {
     0%, 100% {
-        text-shadow: 2px 2px 4px rgba(24, 119, 242, 0.2);
+        text-shadow: 2px 2px 4px rgba(26, 115, 232, 0.2);
     }
     50% {
-        text-shadow: 2px 2px 6px rgba(24, 119, 242, 0.4);
+        text-shadow: 2px 2px 6px rgba(26, 115, 232, 0.4);
     }
 }
 
 .auth-title:hover {
     animation: titleGlow 1.5s infinite alternate;
 }
+
 /* Input fields */
 .auth-input {
     width: 90%;
-    padding: 10px; /* Increased padding for better spacing */
+    padding: 12px;
     margin: 12px 0;
     border: 2px solid #e0e0e0;
     border-radius: 8px;
     font-size: 16px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #f8f9fc;
 }
 
 .auth-input:focus {
     outline: none;
-    border-color: #1877f2;
-    box-shadow: 0 0 0 3px rgba(24, 119, 242, 0.2);
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+    background-color: #ffffff;
 }
 
 /* Signup button */
 .auth-button {
     width: 100%;
     padding: 12px;
-    background: #1e80d0;
+    background: linear-gradient(135deg, #1e80d0, #3b82f6);
     color: white;
     font-size: 18px;
     font-weight: bold;
@@ -111,7 +114,7 @@
 }
 
 .auth-button:hover {
-    background: #166fe5;
+    background: linear-gradient(135deg, #166fe5, #2563eb);
     transform: scale(1.05);
 }
 
@@ -134,8 +137,8 @@
 .auth-register {
     width: 100%;
     padding: 10px;
-    background: #d783ac;
-    color: rgb(255, 255, 255);
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    color: white;
     font-size: 16px;
     font-weight: bold;
     border: none;
@@ -148,7 +151,7 @@
 }
 
 .auth-register:hover {
-    background: #f61020;
+    background: linear-gradient(135deg, #ff4d6d, #ff6b8b);
     transform: scale(1.05);
 }
 
