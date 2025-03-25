@@ -7,7 +7,7 @@ const Registration = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [role, setRole] = useState("team_member");
+    const [role, setRole] = useState("member");
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
@@ -79,7 +79,7 @@ const Registration = () => {
                     <select value={role} onChange={(e) => setRole(e.target.value)} className="auth-input">
                         
                         <option value="project_manager">Project Manager</option>
-                        <option value="team_member">Team Member</option>
+                        <option value="member">Team Member</option>
                         <option value="client">Client</option>
                     </select>
                     <button type="submit" className="auth-button">Sign Up</button>
