@@ -11,14 +11,32 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    
     public function register(Request $request)
     {
+        // Check if there's no user in the database
+        if (User::count() === 0) {
+            $admin = User::create([
+                'name' => 'Admin',
+                'email' => 'admin',
+                'password' => Hash::make('admin'),
+                'role' => 'Admin',
+            ]);
+
+            $adminToken = $admin->createToken('authToken')->plainTextToken;
+
+            return response()->json([
+                'message' => 'Default admin account created!',
+                'user' => $admin,
+                'token' => $adminToken
+            ], 201);
+        }
+
+        // Proceed with normal registration
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|in:admin,project_manager,team_member,client',
+            'password' => 'required|string|min:3|confirmed',
+            'role' => 'required|in:manager,member,client',
         ]);
 
         if ($validator->fails()) {
@@ -41,7 +59,6 @@ class AuthController extends Controller
         ], 201);
     }
 
-    
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -69,7 +86,6 @@ class AuthController extends Controller
         return response()->json(['message' => 'Logged out successfully']);
     }
 
-   
     public function user(Request $request)
     {
         return response()->json($request->user());

@@ -4,35 +4,93 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: #b3c8e8;
+    background: linear-gradient(135deg, #b3c8e8, #8da9d6);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
 }
 
 /* Box styling */
 .auth-box {
     background: white;
     padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(26, 25, 25, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(26, 25, 25, 0.2);
     text-align: center;
-    width: 360px;
+    width: 400px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Title */
+.auth-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(26, 25, 25, 0.3);
+}
+
 .auth-title {
-    font-size: 24px;
+    font-size: 28px;
     color: #1877f2;
-    font-weight: bold;
-    margin-bottom: 20px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: linear-gradient(45deg, #1877f2, #4267B2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 2px 2px 4px rgba(24, 119, 242, 0.2);
 }
 
+.auth-title::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    bottom: -10px;
+    left: 0;
+    background: linear-gradient(to right, #1877f2, #4267B2);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.auth-title:hover::before {
+    transform: scaleX(1);
+}
+
+/* Optional: Add a subtle animate effect */
+@keyframes titleGlow {
+    0%, 100% {
+        text-shadow: 2px 2px 4px rgba(24, 119, 242, 0.2);
+    }
+    50% {
+        text-shadow: 2px 2px 6px rgba(24, 119, 242, 0.4);
+    }
+}
+
+.auth-title:hover {
+    animation: titleGlow 1.5s infinite alternate;
+}
 /* Input fields */
 .auth-input {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    border: 1px solid #ddd;
-    border-radius: 6px;
+    width: 90%;
+    padding: 10px; /* Increased padding for better spacing */
+    margin: 12px 0;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
     font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-input:focus {
+    outline: none;
+    border-color: #1877f2;
+    box-shadow: 0 0 0 3px rgba(24, 119, 242, 0.2);
 }
 
 /* Signup button */
@@ -44,13 +102,32 @@
     font-size: 18px;
     font-weight: bold;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
     margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .auth-button:hover {
     background: #166fe5;
+    transform: scale(1.05);
+}
+
+.auth-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: all 0.6s;
+}
+
+.auth-button:hover::before {
+    left: 100%;
 }
 
 /* Back to login button */
@@ -62,18 +139,39 @@
     font-size: 16px;
     font-weight: bold;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
     margin-top: 15px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .auth-register:hover {
     background: #f61020;
+    transform: scale(1.05);
+}
+
+.auth-register::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: all 0.6s;
+}
+
+.auth-register:hover::before {
+    left: 100%;
 }
 
 /* Error message */
 .auth-error {
-    color: red;
+    color: #d32f2f;
     font-size: 14px;
     margin-bottom: 10px;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
