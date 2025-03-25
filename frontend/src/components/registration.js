@@ -78,7 +78,7 @@ const Registration = () => {
                     />
                     <select value={role} onChange={(e) => setRole(e.target.value)} className="auth-input">
                         
-                        <option value="project_manager">Project Manager</option>
+                        <option value="manager">Project Manager</option>
                         <option value="member">Team Member</option>
                         <option value="client">Client</option>
                     </select>
