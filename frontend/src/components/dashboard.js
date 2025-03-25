@@ -2,19 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style/dashboard.css";
 
-// Dashboard component displays user details and a list of registered users
+// Dashboard component displays user details, a list of users, and provides a logout option.
 const Dashboard = ({ onLogout }) => {
-    const navigate = useNavigate(); // Hook for navigation
-    const [users, setUsers] = useState([]); // State for the list of users
-    const [user, setUser] = useState(null); // State for the logged-in user details
+    const navigate = useNavigate();
+    const [users, setUsers] = useState([]); // State to store the list of users
+    const [user, setUser] = useState(null); // State to store the logged-in user details
 
-    // Fetch user details and the list of users when the component mounts
     useEffect(() => {
-        fetchUserDetails();
-        fetchUsers();
+        fetchUserDetails(); // Fetch logged-in user details on component mount
+        fetchUsers(); // Fetch the list of all users on component mount
     }, []);
 
-    // Fetch the logged-in user details
+    // Fetch the logged-in user details from the API
     const fetchUserDetails = async () => {
         try {
             const token = localStorage.getItem("token"); // Retrieve token from local storage
@@ -27,14 +26,14 @@ const Dashboard = ({ onLogout }) => {
 
             if (response.ok) {
                 const data = await response.json();
-                setUser(data); // Set user details
+                setUser(data); // Update the user state with fetched data
             }
         } catch (error) {
             console.error("Error fetching user details", error);
         }
     };
 
-    // Fetch the list of all users
+    // Fetch the list of all users from the API
     const fetchUsers = async () => {
         try {
             const token = localStorage.getItem("token"); // Retrieve token from local storage
@@ -47,14 +46,14 @@ const Dashboard = ({ onLogout }) => {
 
             if (response.ok) {
                 const data = await response.json();
-                setUsers(data); // Set the list of users
+                setUsers(data); // Update the users state with fetched data
             }
         } catch (error) {
             console.error("Error fetching users", error);
         }
     };
 
-    // Handle logout
+    // Handle user logout by calling the API and clearing local storage
     const handleLogout = async () => {
         try {
             const token = localStorage.getItem("token"); // Retrieve token from local storage
@@ -68,7 +67,7 @@ const Dashboard = ({ onLogout }) => {
 
             if (response.ok) {
                 localStorage.removeItem("token"); // Remove token from local storage
-                onLogout(); // Notify parent component about logout
+                onLogout(); // Call the onLogout callback
                 navigate("/"); // Redirect to the login page
             }
         } catch (error) {
@@ -78,18 +77,17 @@ const Dashboard = ({ onLogout }) => {
 
     return (
         <div className="dashboard">
-            {/* Sidebar */}
+            {/* Sidebar section displaying user details and logout button */}
             <div className="sidebar">
-                <h2>Welcome, {user ? user.name : "Loading..."}</h2> {/* Display user name */}
-                <button className="logout-btn" onClick={handleLogout}>Logout</button> {/* Logout button */}
+                <h2>Welcome, {user ? user.name : "Loading..."}</h2>
+                <button className="logout-btn" onClick={handleLogout}>Logout</button>
             </div>
 
-            {/* Main Content */}
+            {/* Main content section displaying the list of users */}
             <div className="main-content">
                 <h2>Dashboard</h2>
                 <p>Here is the list of registered users.</p>
 
-                {/* Table displaying the list of users */}
                 <table className="user-table">
                     <thead>
                         <tr>
@@ -111,7 +109,7 @@ const Dashboard = ({ onLogout }) => {
                             ))
                         ) : (
                             <tr>
-                                <td colSpan="4">No users found.</td> {/* Display message if no users */}
+                                <td colSpan="4">No users found.</td>
                             </tr>
                         )}
                     </tbody>
