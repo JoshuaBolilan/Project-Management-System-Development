@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style/dashboard.css";
 
+// Dashboard component displays user details and a list of registered users
 const Dashboard = ({ onLogout }) => {
-    const navigate = useNavigate();
-    const [users, setUsers] = useState([]);
-    const [user, setUser] = useState(null);
+    const navigate = useNavigate(); // Hook for navigation
+    const [users, setUsers] = useState([]); // State for the list of users
+    const [user, setUser] = useState(null); // State for the logged-in user details
 
+    // Fetch user details and the list of users when the component mounts
     useEffect(() => {
         fetchUserDetails();
         fetchUsers();
@@ -15,7 +17,7 @@ const Dashboard = ({ onLogout }) => {
     // Fetch the logged-in user details
     const fetchUserDetails = async () => {
         try {
-            const token = localStorage.getItem("token");
+            const token = localStorage.getItem("token"); // Retrieve token from local storage
             const response = await fetch("http://127.0.0.1:8000/api/user", {
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -35,7 +37,7 @@ const Dashboard = ({ onLogout }) => {
     // Fetch the list of all users
     const fetchUsers = async () => {
         try {
-            const token = localStorage.getItem("token");
+            const token = localStorage.getItem("token"); // Retrieve token from local storage
             const response = await fetch("http://127.0.0.1:8000/api/users", {
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -45,7 +47,7 @@ const Dashboard = ({ onLogout }) => {
 
             if (response.ok) {
                 const data = await response.json();
-                setUsers(data);
+                setUsers(data); // Set the list of users
             }
         } catch (error) {
             console.error("Error fetching users", error);
@@ -55,7 +57,7 @@ const Dashboard = ({ onLogout }) => {
     // Handle logout
     const handleLogout = async () => {
         try {
-            const token = localStorage.getItem("token");
+            const token = localStorage.getItem("token"); // Retrieve token from local storage
             const response = await fetch("http://127.0.0.1:8000/api/logout", {
                 method: "POST",
                 headers: {
@@ -65,9 +67,9 @@ const Dashboard = ({ onLogout }) => {
             });
 
             if (response.ok) {
-                localStorage.removeItem("token");
-                onLogout();
-                navigate("/");
+                localStorage.removeItem("token"); // Remove token from local storage
+                onLogout(); // Notify parent component about logout
+                navigate("/"); // Redirect to the login page
             }
         } catch (error) {
             console.error("Logout failed", error);
@@ -78,8 +80,8 @@ const Dashboard = ({ onLogout }) => {
         <div className="dashboard">
             {/* Sidebar */}
             <div className="sidebar">
-                <h2>Welcome, {user ? user.name : "Loading..."}</h2>
-                <button className="logout-btn" onClick={handleLogout}>Logout</button>
+                <h2>Welcome, {user ? user.name : "Loading..."}</h2> {/* Display user name */}
+                <button className="logout-btn" onClick={handleLogout}>Logout</button> {/* Logout button */}
             </div>
 
             {/* Main Content */}
@@ -87,6 +89,7 @@ const Dashboard = ({ onLogout }) => {
                 <h2>Dashboard</h2>
                 <p>Here is the list of registered users.</p>
 
+                {/* Table displaying the list of users */}
                 <table className="user-table">
                     <thead>
                         <tr>
@@ -108,7 +111,7 @@ const Dashboard = ({ onLogout }) => {
                             ))
                         ) : (
                             <tr>
-                                <td colSpan="4">No users found.</td>
+                                <td colSpan="4">No users found.</td> {/* Display message if no users */}
                             </tr>
                         )}
                     </tbody>
