@@ -1,0 +1,348 @@
+/* ====================================
+   Overall Container Styles
+==================================== */
+.project-details-container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #dcdade;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+/* ====================================
+   Divider Styles
+==================================== */
+.section-divider {
+    margin: 30px 0;
+    border-top: 2px solid #e5e7eb;  /* Light gray divider */
+    padding-top: 20px;
+}
+
+/* ====================================
+   Headers
+==================================== */
+.project-details-container h2,
+.project-header h2 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.project-details-container p,
+.project-header p {
+    font-size: 1.1rem;
+    color: #4b5563;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.project-details-container p strong {
+    color: #1f2937;
+}
+
+/* ====================================
+   Section Titles
+==================================== */
+.project-details-container h3 {
+    font-size: 1.6rem;
+    color: #111827;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-left: 4px solid #007BFF;  /* Blue accent */
+    padding-left: 10px;
+}
+
+/* ====================================
+   Progress Bar
+==================================== */
+.progress-bar-container {
+    background-color: #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 24px;
+    margin-bottom: 30px;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #007BFF;  /* Blue progress bar */
+    color: white;
+    text-align: center;
+    line-height: 24px;
+    font-weight: 600;
+    transition: width 0.4s ease-in-out;
+}
+
+/* ====================================
+   Budget Tracking
+==================================== */
+.budget-tracking {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 18px;
+    background-color: #f9fafb;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.budget-tracking p {
+    font-size: 1.1rem;
+    color: #374151;
+    margin: 0;
+}
+
+.budget-update-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.budget-update-form input {
+    width: 160px;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background-color: #f3f4f6;
+    font-size: 1rem;
+}
+
+.budget-update-form button {
+    background-color: #007BFF; /* Blue button */
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.budget-update-form button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* ====================================
+   Task List
+==================================== */
+.task-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.task-list li {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+    margin-bottom: 20px;
+}
+
+.task-list li h4 {
+    font-size: 1.25rem;
+    color: #1f2937;
+    margin-bottom: 10px;
+}
+
+.task-list li p {
+    font-size: 1rem;
+    color: #4b5563;
+    margin-bottom: 6px;
+}
+
+.task-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.task-actions button {
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.task-actions button:first-child {
+    background-color: #007BFF; /* Blue button */
+}
+
+.task-actions button:first-child:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.task-actions button[type="button"] {
+    background-color: #ef4444;
+}
+
+.task-actions button[type="button"]:hover {
+    background-color: #dc2626;
+}
+
+/* ====================================
+   Gantt Chart
+==================================== */
+.gantt-chart {
+    display: flex;
+    flex-direction: column;
+    background-color: #f9fafb;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+.gantt-task {
+    background-color: #007BFF; /* Blue Gantt task */
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    min-width: 90px;
+    text-align: center;
+}
+
+/* ====================================
+   Form Styling
+==================================== */
+.project-details-container form,
+.new-task-form {
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 10px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+    margin-top: 30px;
+}
+
+.project-details-container form input,
+.project-details-container form select,
+.project-details-container form textarea,
+.new-task-form input,
+.new-task-form select,
+.new-task-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background-color: #f9fafb;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    transition: border-color 0.3s ease;
+}
+
+.project-details-container form input:focus,
+.project-details-container form select:focus,
+.project-details-container form textarea:focus,
+.new-task-form input:focus,
+.new-task-form select:focus,
+.new-task-form textarea:focus {
+    border-color: #007BFF; /* Blue focus border */
+    outline: none;
+}
+
+.project-details-container form button,
+.new-task-form button {
+    background-color: #007BFF; /* Blue button */
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.project-details-container form button:hover,
+.new-task-form button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* ====================================
+   Back Button
+==================================== */
+.back-button {
+    background-color: #007BFF; /* Blue button */
+    color: white;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* ====================================
+   Section Divider Styles (for tables or functions)
+==================================== */
+.table-section, .function-section {
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f9fafb;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.table-section {
+    border-top: 4px solid #007BFF; /* Blue top border for table section */
+}
+
+.function-section {
+    border-top: 4px solid #1D4ED8; /* Dark blue top border for function section */
+}
+/* ====================================
+   Section Wrapper Containers
+==================================== */
+
+/* Progress Section */
+.section-progress {
+    background-color: #e0f0ff; /* Light blue background */
+    padding: 24px;
+    border-radius: 12px;
+    margin-top: 30px;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.1);
+    border-left: 5px solid #007BFF;
+}
+
+/* Budget Section */
+.section-budget {
+    background-color: #fff4e5; /* Light orange background */
+    padding: 24px;
+    border-radius: 12px;
+    margin-top: 30px;
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.15);
+    border-left: 5px solid #FFA500;
+}
+
+/* Task List Section */
+.section-task-list {
+    background-color: #e7f6e7; /* Light green background */
+    padding: 24px;
+    border-radius: 12px;
+    margin-top: 30px;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.1);
+    border-left: 5px solid #28a745;
+}
+
+/* Create New Task Section */
+.section-new-task {
+    background-color: #f3e8ff; /* Light purple background */
+    padding: 24px;
+    border-radius: 12px;
+    margin-top: 30px;
+    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.12);
+    border-left: 5px solid #6f42c1;
+}
