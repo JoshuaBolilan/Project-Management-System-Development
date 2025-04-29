@@ -407,17 +407,44 @@ const ProjectDetails = () => {
                 <button type="submit">Create Task</button>
             </form>
 
-            {/* <h3>Gantt Chart</h3>
-            <div className="gantt-chart">
-                {tasks.map(task => (
-                    <div key={task.id} className="gantt-task" style={{
-                        marginLeft: `${(new Date(task.start_date || project.start_date).getTime() - new Date(project.start_date).getTime()) / (1000 * 60 * 60 * 24)}px`,
-                        width: `${(new Date(task.due_date).getTime() - new Date(task.start_date || project.start_date).getTime()) / (1000 * 60 * 60 * 24)}px`
-                    }}>
+            <h3>Gantt Chart</h3>
+<div className="gantt-container">
+    <div className="gantt-header">
+        {Array.from({ length: 30 }).map((_, i) => {
+            const date = new Date(project.start_date);
+            date.setDate(date.getDate() + i);
+            return (
+                <div key={i} className="gantt-date">
+                    {date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+                </div>
+            );
+        })}
+    </div>
+    <div className="gantt-body">
+        {tasks.map((task, index) => {
+            const taskStart = new Date(task.start_date || project.start_date);
+            const taskEnd = new Date(task.due_date);
+            const projectStart = new Date(project.start_date);
+
+            const startOffset = Math.floor((taskStart - projectStart) / (1000 * 60 * 60 * 24));
+            const duration = Math.max(1, Math.floor((taskEnd - taskStart) / (1000 * 60 * 60 * 24)));
+
+            return (
+                <div className="gantt-row" key={task.id}>
+                    <div
+                        className="gantt-task-bar"
+                        style={{
+                            marginLeft: `${startOffset * 40}px`,
+                            width: `${duration * 40}px`
+                        }}
+                    >
                         {task.title}
                     </div>
-                ))}
-            </div> */}
+                </div>
+            );
+        })}
+    </div>
+</div>
 
             <button onClick={handleBackToProjects}>Back to dashboard</button>
         </div>
