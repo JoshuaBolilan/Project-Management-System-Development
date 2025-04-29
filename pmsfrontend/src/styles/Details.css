@@ -1,348 +1,287 @@
 /* ====================================
-   Overall Container Styles
+   Root Variables for Theming
 ==================================== */
-.project-details-container {
-    width: 90%;
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 30px;
-    background-color: #dcdade;
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-    font-family: 'Inter', 'Segoe UI', sans-serif;
+:root {
+    --primary-color: #007BFF;
+    --primary-dark: #0056b3;
+    --secondary-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --light-bg: #f9fafb;
+    --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+    --font-family: 'Inter', 'Segoe UI', sans-serif;
 }
 
 /* ====================================
-   Divider Styles
+   Base Styles
 ==================================== */
+body {
+    font-family: var(--font-family);
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 0;
+}
+
+.project-details-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+}
+
+h2, h3, h4 {
+    color: #1f2937;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #4b5563;
+    font-size: 1rem;
+}
+
+/* ====================================
+   Section Titles and Dividers
+==================================== */
+h2 {
+    font-size: 2.4rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 1.6rem;
+    border-left: 4px solid var(--primary-color);
+    padding-left: 10px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
 .section-divider {
     margin: 30px 0;
-    border-top: 2px solid #e5e7eb;  /* Light gray divider */
+    border-top: 2px solid #e5e7eb;
     padding-top: 20px;
 }
 
 /* ====================================
-   Headers
+   Card Wrapper
 ==================================== */
-.project-details-container h2,
-.project-header h2 {
-    font-size: 2.4rem;
-    font-weight: 700;
-    color: #1f2937;
-    margin-bottom: 10px;
-    text-align: center;
+.card {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
 }
 
-.project-details-container p,
-.project-header p {
-    font-size: 1.1rem;
-    color: #4b5563;
-    margin-bottom: 12px;
-    text-align: center;
-}
-
-.project-details-container p strong {
-    color: #1f2937;
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 /* ====================================
-   Section Titles
+   Buttons
 ==================================== */
-.project-details-container h3 {
-    font-size: 1.6rem;
-    color: #111827;
-    margin-top: 30px;
-    margin-bottom: 15px;
-    border-left: 4px solid #007BFF;  /* Blue accent */
-    padding-left: 10px;
+button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+button.primary {
+    background-color: var(--primary-danger);
+    color: white;
+}
+
+button.primary:hover {
+    background-color: var(--primary-dark);
+}
+
+button.secondary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+button.danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+button.warning {
+    background-color: var(--warning-color);
+    color: black;
 }
 
 /* ====================================
    Progress Bar
 ==================================== */
 .progress-bar-container {
-    background-color: #e5e7eb;
-    border-radius: 12px;
+    background-color: #e0e0e0;
+    border-radius: 25px;
     overflow: hidden;
-    height: 24px;
-    margin-bottom: 30px;
+    height: 25px;
+    margin: 1rem 0;
 }
 
 .progress-bar {
     height: 100%;
-    background-color: #007BFF;  /* Blue progress bar */
+    background-color: var(--primary-color);
     color: white;
     text-align: center;
-    line-height: 24px;
-    font-weight: 600;
-    transition: width 0.4s ease-in-out;
+    line-height: 25px;
+    font-weight: bold;
+    border-radius: 25px 0 0 25px;
+    transition: width 0.5s ease-in-out;
+    animation: grow 1s ease-out;
+}
+
+@keyframes grow {
+    from { width: 0; }
+    to { width: 100%; }
 }
 
 /* ====================================
-   Budget Tracking
+   Form Elements
 ==================================== */
-.budget-tracking {
+form {
+    margin-top: 1rem;
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 15px;
-    padding: 18px;
-    background-color: #f9fafb;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    flex-direction: column;
+    gap: 0.75rem;
 }
 
-.budget-tracking p {
-    font-size: 1.1rem;
-    color: #374151;
-    margin: 0;
-}
-
-.budget-update-form {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.budget-update-form input {
-    width: 160px;
-    padding: 10px;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    background-color: #f3f4f6;
+form input,
+form textarea,
+form select {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
     font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.budget-update-form button {
-    background-color: #007BFF; /* Blue button */
-    color: white;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.budget-update-form button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+form input:focus,
+form textarea:focus,
+form select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    outline: none;
 }
 
 /* ====================================
    Task List
 ==================================== */
-.task-list ul {
+ul.task-list {
     list-style-type: none;
     padding: 0;
 }
 
-.task-list li {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
-    margin-bottom: 20px;
+ul.task-list li {
+    background-color: var(--light-bg);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: var(--border-radius);
+    border: 1px solid #ddd;
+    position: relative;
 }
 
-.task-list li h4 {
-    font-size: 1.25rem;
-    color: #1f2937;
-    margin-bottom: 10px;
+ul.task-list li h4 {
+    margin: 0 0 0.5rem 0;
 }
 
-.task-list li p {
-    font-size: 1rem;
-    color: #4b5563;
-    margin-bottom: 6px;
-}
-
-.task-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-}
-
-.task-actions button {
-    padding: 8px 14px;
-    border-radius: 6px;
-    font-size: 0.95rem;
+ul.task-list li .status-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 999px;
+    background-color: var(--primary-color);
     color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    text-transform: uppercase;
 }
 
-.task-actions button:first-child {
-    background-color: #007BFF; /* Blue button */
+.status-completed {
+    background-color: var(--secondary-color);
 }
 
-.task-actions button:first-child:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+.status-pending {
+    background-color: var(--warning-color);
+    color: black;
 }
 
-.task-actions button[type="button"] {
-    background-color: #ef4444;
+.status-overdue {
+    background-color: var(--danger-color);
 }
 
-.task-actions button[type="button"]:hover {
-    background-color: #dc2626;
-}
-
-/* ====================================
-   Gantt Chart
-==================================== */
-.gantt-chart {
-    display: flex;
-    flex-direction: column;
-    background-color: #f9fafb;
-    padding: 16px;
-    border-radius: 8px;
-    overflow-x: auto;
-}
-
-.gantt-task {
-    background-color: #007BFF; /* Blue Gantt task */
-    color: white;
-    padding: 10px;
-    border-radius: 6px;
-    margin-bottom: 10px;
+ul.task-list li button {
+    margin-right: 0.5rem;
+    padding: 0.3rem 0.8rem;
     font-size: 0.9rem;
-    min-width: 90px;
-    text-align: center;
-}
-
-/* ====================================
-   Form Styling
-==================================== */
-.project-details-container form,
-.new-task-form {
-    background-color: #ffffff;
-    padding: 24px;
-    border-radius: 10px;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
-    margin-top: 30px;
-}
-
-.project-details-container form input,
-.project-details-container form select,
-.project-details-container form textarea,
-.new-task-form input,
-.new-task-form select,
-.new-task-form textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #d1d5db;
     border-radius: 6px;
-    background-color: #f9fafb;
-    font-size: 1rem;
-    margin-bottom: 15px;
-    transition: border-color 0.3s ease;
-}
-
-.project-details-container form input:focus,
-.project-details-container form select:focus,
-.project-details-container form textarea:focus,
-.new-task-form input:focus,
-.new-task-form select:focus,
-.new-task-form textarea:focus {
-    border-color: #007BFF; /* Blue focus border */
-    outline: none;
-}
-
-.project-details-container form button,
-.new-task-form button {
-    background-color: #007BFF; /* Blue button */
-    color: white;
-    padding: 12px 20px;
-    font-size: 1.1rem;
     border: none;
-    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.project-details-container form button:hover,
-.new-task-form button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-
-/* ====================================
-   Back Button
-==================================== */
-.back-button {
-    background-color: #007BFF; /* Blue button */
     color: white;
-    padding: 12px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 30px;
-    transition: background-color 0.3s ease;
+    transition: var(--transition);
 }
 
-.back-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+ul.task-list li button.edit {
+    background-color: var(--primary-color);
+}
+
+ul.task-list li button.delete {
+    background-color: var(--danger-color);
+}
+
+ul.task-list li button:hover {
+    opacity: 0.9;
 }
 
 /* ====================================
-   Section Divider Styles (for tables or functions)
+   Section Wrappers
 ==================================== */
-.table-section, .function-section {
-    padding: 20px;
-    margin-top: 20px;
-    background-color: #f9fafb;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-.table-section {
-    border-top: 4px solid #007BFF; /* Blue top border for table section */
-}
-
-.function-section {
-    border-top: 4px solid #1D4ED8; /* Dark blue top border for function section */
-}
-/* ====================================
-   Section Wrapper Containers
-==================================== */
-
-/* Progress Section */
 .section-progress {
-    background-color: #e0f0ff; /* Light blue background */
+    background-color: #e0f0ff;
     padding: 24px;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     margin-top: 30px;
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.1);
-    border-left: 5px solid #007BFF;
+    box-shadow: var(--card-shadow);
+    border-left: 5px solid var(--primary-color);
 }
 
-/* Budget Section */
 .section-budget {
-    background-color: #fff4e5; /* Light orange background */
+    background-color: #fff4e5;
     padding: 24px;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     margin-top: 30px;
-    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.15);
+    box-shadow: var(--card-shadow);
     border-left: 5px solid #FFA500;
 }
 
-/* Task List Section */
 .section-task-list {
-    background-color: #e7f6e7; /* Light green background */
+    background-color: #e7f6e7;
     padding: 24px;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     margin-top: 30px;
-    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.1);
-    border-left: 5px solid #28a745;
+    box-shadow: var(--card-shadow);
+    border-left: 5px solid var(--secondary-color);
 }
 
-/* Create New Task Section */
 .section-new-task {
-    background-color: #f3e8ff; /* Light purple background */
+    background-color: #f3e8ff;
     padding: 24px;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     margin-top: 30px;
-    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.12);
+    box-shadow: var(--card-shadow);
     border-left: 5px solid #6f42c1;
 }
