@@ -37,6 +37,32 @@ Deliverables:
 - Database schema
 - Basic UI for login and dashboard
 
+Sprint 2: Project and Task Management (2 Weeks)
+
+✅ Create CRUD (Create, Read, Update, Delete) for Projects
+✅ Implement task creation, assignment, and updating
+✅ Add task statuses and priorities
+✅ Develop backend API for project and task management
+
+Deliverables:
+
+Working project and task management
+API for projects and tasks
+Basic task workflow
+
+Sprint 3: Resource and Budget Management (2 Weeks)
+
+✅ Create resource allocation feature (assign team members to tasks)
+✅ Develop budget tracking and actual expenditure feature
+✅ Implement time tracking for tasks
+✅ Add progress tracking and Gantt chart visualization
+
+Deliverables:
+
+Resource assignment working
+Budget tracking functional
+Progress tracking UI
+
  Installation Guide
 Prerequisites
 Ensure you have the following installed:
