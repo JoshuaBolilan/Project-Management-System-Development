@@ -9,7 +9,6 @@
     padding: 20px;
 }
 
-/* Form Box */
 .registration-form {
     display: flex;
     flex-direction: column;
@@ -22,7 +21,7 @@
     position: relative;
 }
 
-/* Form Header */
+
 .registration-header {
     font-size: 24px;
     font-weight: bold;
@@ -46,7 +45,7 @@
     color: #68b0ab;
 }
 
-/* Input Fields */
+
 .input-field {
     width: 100%;
     padding: 12px;
