@@ -33,6 +33,9 @@ body {
     box-shadow: var(--card-shadow);
 }
 
+/* ====================================
+   Headings & Text
+==================================== */
 h2, h3, h4 {
     color: #1f2937;
     margin-bottom: 10px;
@@ -67,7 +70,7 @@ h3 {
 }
 
 /* ====================================
-   Card Wrapper
+   Card Wrapper (Reusable Panel Style)
 ==================================== */
 .card {
     background-color: #fff;
@@ -96,7 +99,7 @@ button {
 }
 
 button.primary {
-    background-color: var(--primary-danger);
+    background-color: var(--primary-danger); /* This might be a typo — variable not defined */
     color: white;
 }
 
@@ -142,6 +145,7 @@ button.warning {
     animation: grow 1s ease-out;
 }
 
+/* Animation for progress bar loading */
 @keyframes grow {
     from { width: 0; }
     to { width: 100%; }
@@ -178,7 +182,7 @@ form select:focus {
 }
 
 /* ====================================
-   Task List
+   Task List Styles
 ==================================== */
 ul.task-list {
     list-style-type: none;
@@ -198,6 +202,7 @@ ul.task-list li h4 {
     margin: 0 0 0.5rem 0;
 }
 
+/* Status badge for tasks */
 ul.task-list li .status-badge {
     position: absolute;
     top: 1rem;
@@ -224,6 +229,7 @@ ul.task-list li .status-badge {
     background-color: var(--danger-color);
 }
 
+/* Task action buttons */
 ul.task-list li button {
     margin-right: 0.5rem;
     padding: 0.3rem 0.8rem;
@@ -248,7 +254,7 @@ ul.task-list li button:hover {
 }
 
 /* ====================================
-   Section Wrappers
+   Section Wrapper Blocks
 ==================================== */
 .section-progress {
     background-color: #e0f0ff;
@@ -286,8 +292,9 @@ ul.task-list li button:hover {
     border-left: 5px solid #6f42c1;
 }
 
-/* Gantt Chart Styles */
-
+/* ====================================
+   Gantt Chart Styles
+==================================== */
 .gantt-container {
     overflow-x: auto;
     border: 1px solid #ccc;
