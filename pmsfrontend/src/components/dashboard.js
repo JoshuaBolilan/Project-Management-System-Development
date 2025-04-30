@@ -4,12 +4,14 @@ import Projects from "./Projects";
 import ProjectDetails from "./ProjectDetails";
 import "../styles/Dashboard.css";
 
+// Dashboard component that handles user role display, navigation, project listing, and logout functionality
 const Dashboard = ({ onLogout }) => {
   const navigate = useNavigate();
-  const [role, setRole] = useState("");
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [showDetails, setShowDetails] = useState(false);
+  const [role, setRole] = useState(""); // Stores the current user role
+  const [sidebarOpen, setSidebarOpen] = useState(false); // Controls sidebar visibility
+  const [showDetails, setShowDetails] = useState(false); // Controls visibility of the Project Details offcanvas
 
+  // Load user role from localStorage when the component mounts
   useEffect(() => {
     const storedRole = localStorage.getItem("role");
     if (storedRole) {
@@ -17,6 +19,7 @@ const Dashboard = ({ onLogout }) => {
     }
   }, []);
 
+  // Handles user logout by sending a request to the API and clearing localStorage
   const handleLogout = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -32,8 +35,8 @@ const Dashboard = ({ onLogout }) => {
     } finally {
       localStorage.removeItem("token");
       localStorage.removeItem("role");
-      if (onLogout) onLogout();
-      navigate("/");
+      if (onLogout) onLogout(); // Trigger any parent logout actions
+      navigate("/"); // Redirect to home/login page
     }
   };
 
@@ -42,40 +45,44 @@ const Dashboard = ({ onLogout }) => {
       {/* Sidebar Toggle Button */}
       <button className="hamburger" onClick={() => setSidebarOpen(!sidebarOpen)}>☰</button>
 
-      {/* Sidebar */}
+      {/* Sidebar Navigation */}
       <aside className={`sidebar ${sidebarOpen ? "open" : ""}`}>
         <button className="close-sidebar" onClick={() => setSidebarOpen(false)}>×</button>
+        {/* Display formatted user role */}
         <h3 className="sidebar-title">
           {role ? role.charAt(0).toUpperCase() + role.slice(1).replace("_", " ") : "User"}
         </h3>
         <ul className="sidebar-links">
           <li>
+            {/* Link to Projects Page */}
             <Link to="/projects" onClick={() => setSidebarOpen(false)}>Projects</Link>
           </li>
           <li>
+            {/* Button to show Project Details offcanvas */}
             <button onClick={() => { setShowDetails(true); setSidebarOpen(false); }}>Task</button>
           </li>
           <li>
+            {/* Logout button */}
             <button className="logout-button" onClick={handleLogout}>Logout</button>
           </li>
         </ul>
       </aside>
 
-      {/* Main Content */}
+      {/* Main Content Area */}
       <div className="main-content">
         <header className="dashboard-header">
           <h2>Klick Inc. Dashboard</h2>
         </header>
 
-        {/* Button to open project details offcanvas */}
+        {/* Optional button to view Project Details */}
         <button className="details-button" onClick={() => setShowDetails(true)}>
           View Project Details
         </button>
 
-        {/* Projects Listing */}
+        {/* Display list of projects */}
         <Projects />
 
-        {/* Offcanvas Project Details */}
+        {/* Offcanvas panel to show project details */}
         {showDetails && (
           <div className="offcanvas-overlay" onClick={() => setShowDetails(false)}>
             <div className="offcanvas" onClick={(e) => e.stopPropagation()}>
