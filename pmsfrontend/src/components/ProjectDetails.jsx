@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "../styles/Details.css";
 
 const ProjectDetails = () => {
+
     const { id } = useParams();
     const navigate = useNavigate();
     const [project, setProject] = useState(null);
