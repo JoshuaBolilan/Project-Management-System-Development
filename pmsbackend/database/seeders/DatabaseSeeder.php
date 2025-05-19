@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
     {
         // Run TeamMemberSeeder to create 5 team members
         $this->call(TeamMemberSeeder::class);
+
     }
 }
