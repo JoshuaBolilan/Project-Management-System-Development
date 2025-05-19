@@ -7,6 +7,7 @@
     ),
   ),
   'laravel/sanctum' => 
+
   array (
     'providers' => 
     array (
