@@ -74,12 +74,12 @@ const Dashboard = ({ onLogout }) => {
           <h2>Klick Inc. Dashboard</h2>
         </header>
 
-        {/* Optional button to view Project Details */}
+        {/* button to view Project Details */}
         <button className="details-button" onClick={() => setShowDetails(true)}>
           View Project Details
         </button>
 
-        {/* Display list of projects */}
+        {/* Display list  projects */}
         <Projects />
 
         {/* Offcanvas panel to show project details */}

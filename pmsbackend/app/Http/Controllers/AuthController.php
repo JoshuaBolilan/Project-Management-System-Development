@@ -11,24 +11,25 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    
+    /**
+     * Register a new user or create a default admin if no users exist.
+     */
     public function register(Request $request)
     {
-
-        // Check if there's no user in the database
+        // Check if there are no users in the database
         if (User::count() === 0) {
-            // Create a default admin account if no users exist
+            // Create a default admin user
             $admin = User::create([
                 'name' => 'Admin',
                 'email' => 'admin@gmail.com',
-                'password' => Hash::make('admin123'),
+                'password' => Hash::make('admin123'), // Securely hash the password
                 'role' => 'Admin',
             ]);
 
-            // Generate authentication token for the admin account
+            // Generate an authentication token for the admin user
             $adminToken = $admin->createToken('authToken')->plainTextToken;
 
-            // Return a response with the admin details and token
+            // Return response with admin user and token
             return response()->json([
                 'message' => 'Default admin account created!',
                 'user' => $admin,
@@ -36,28 +37,32 @@ class AuthController extends Controller
             ], 201);
         }
 
+        // Validate the incoming registration request data
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => [
-            'required',
-            'string',
-            'min:8',
-            'confirmed',
-            'regex:/^[A-Za-z\d@$!%*?&]+$/',
-        ],
-            'role' => 'required|in:project_manager,team_member,client',
+                'required',
+                'string',
+                'min:8',
+                'confirmed', // Ensures password_confirmation matches
+                'regex:/^[A-Za-z\d@$!%*?&]+$/', // Alphanumeric + special characters
+            ],
+            'role' => 'required|in:project_manager,team_member,client', // Only allow specific roles
         ]);
 
+        // Create the new user
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($request->password), // Hash the password before storing
             'role' => $request->role,
         ]);
 
+        // Generate an authentication token for the user
         $token = $user->createToken('authToken')->plainTextToken;
 
+        // Return response with user details and token
         return response()->json([
             'message' => 'User registered successfully!',
             'user' => $user,
@@ -66,22 +71,28 @@ class AuthController extends Controller
     }
 
     /**
-     * Login a user
+     * Log in an existing user and return an auth token.
      */
     public function login(Request $request)
     {
+        // Validate login request
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
+        // Attempt login using credentials
         if (!Auth::attempt($request->only('email', 'password'))) {
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
 
+        // Retrieve the authenticated user
         $user = Auth::user();
+
+        // Generate a new token for the user
         $token = $user->createToken('authToken')->plainTextToken;
 
+        // Return response with user details and token
         return response()->json([
             'message' => 'Login successful!',
             'user' => $user,
@@ -90,12 +101,14 @@ class AuthController extends Controller
     }
 
     /**
-     * Logout a user
+     * Log out the authenticated user by revoking all tokens.
      */
     public function logout(Request $request)
     {
+        // Delete all tokens for the authenticated user
         $request->user()->tokens()->delete();
 
+        // Return success message
         return response()->json([
             'message' => 'Logged out successfully'
         ]);

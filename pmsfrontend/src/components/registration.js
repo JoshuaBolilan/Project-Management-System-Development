@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/Registration.css"; // Import your CSS
+import "../styles/Registration.css"; // Import CSS file for styling the registration page
 
 const Registration = () => {
     const [name, setName] = useState("");
