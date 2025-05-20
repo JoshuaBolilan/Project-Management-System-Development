@@ -36,9 +36,9 @@
 /* Keyframes for the spinning logo animation */
 @keyframes App-logo-spin {
   from {
-    transform: rotate(0deg); /* Initial state: no rotation */
+    transform: rotate(0deg); 
   }
   to {
-    transform: rotate(360deg); /* Final state: full rotation */
+    transform: rotate(360deg); 
   }
 }
